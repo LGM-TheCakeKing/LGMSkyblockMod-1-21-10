@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "package": "ml.thecakeking.lgmmods.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExampleMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "client": [
+    "ClientPlayerInteractionManagerMixin",
+    "HandledScreenMixin",
+    "HandelScreenDrawMixin"
+  ]
+}
