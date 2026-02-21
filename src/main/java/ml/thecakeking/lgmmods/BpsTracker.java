@@ -3,6 +3,7 @@ package ml.thecakeking.lgmmods;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 
+import static ml.thecakeking.lgmmods.LGMSkyblockMod.bpsTrackerOn;
 
 
 /// BlockPerSecondTracker
@@ -15,7 +16,7 @@ public class BpsTracker {
 
     public static void tick() {
         MinecraftClient client = MinecraftClient.getInstance();
-        if (client.world == null || client.player == null) return;
+        if (client.world == null || client.player == null || !bpsTrackerOn) return;
 
         if (client.world.getTime() % 20 == 0) {
             client.player.sendMessage(

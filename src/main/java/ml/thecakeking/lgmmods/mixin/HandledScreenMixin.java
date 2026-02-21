@@ -1,6 +1,6 @@
 package ml.thecakeking.lgmmods.mixin;
 
-import ml.thecakeking.lgmmods.InventoryHighlighter;
+import ml.thecakeking.lgmmods.dungeonhelper.InventoryHighlighter;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.text.Text;
