@@ -1,5 +1,6 @@
 package ml.thecakeking.lgmmods.mixin;
 
+import ml.thecakeking.lgmmods.dungeonhelper.DungeonUtils;
 import ml.thecakeking.lgmmods.dungeonhelper.InventoryHighlighter;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -24,6 +25,7 @@ public class HandelScreenDrawMixin {
         TextRenderer renderer = MinecraftClient.getInstance().textRenderer;
         //context.drawText(renderer, String.valueOf(slot.id), slot.x, slot.y, 0x6600FF00, false); //For debugging
 
+        if (!DungeonUtils.currentlyInDungeon) return;
         //check if terminal helper is on
         //if (!LGMSkyblockMod.TerminalHelp) return;
         //if in floor 7
@@ -45,7 +47,7 @@ public class HandelScreenDrawMixin {
         }
 
         if (InventoryHighlighter.nameTerminal) {
-            if (stack.getItemName().getString().toLowerCase().startsWith(InventoryHighlighter.lookForLetter)) {
+            if (stack.getCustomName().getString().toLowerCase().startsWith(InventoryHighlighter.lookForLetter)) {
                 context.fill(x,y, x+16,y+16,HighlightColor);
                 return;
             }

@@ -21,7 +21,8 @@ public class TriggerManager {
         MinecraftClient client = MinecraftClient.getInstance();
         String messageContent = text.getString().toLowerCase();
 
-        LGMSkyblockMod.LOGGER.info("Incoming Chat Message: " + messageContent);
+        if (messageContent.contains("❤") && messageContent.contains("❈") && messageContent.contains("✎")) return;
+        //LGMSkyblockMod.LOGGER.info("Incoming Chat Message: " + messageContent);
 
         for (ChatTrigger trigger : triggers)
         {
