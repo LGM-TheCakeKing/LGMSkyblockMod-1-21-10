@@ -47,7 +47,7 @@ public class InventoryHighlighter
     public static void onScreenOpened(String title)
     {
         //first check if terminal helper is on, then check if we are in a f7?
-        if(true)
+        if(DungeonUtils.currentlyInDungeon)
         {
             colorTerminal=false; orderTerminal=false; nameTerminal=false; onOffTerminal=false; panesTerminal=false; nextIndexOfOrder=1;
 

@@ -17,11 +17,12 @@ public class TriggerManager {
 
     public static List<ChatTrigger> triggers = new ArrayList<>();
 
-    public static void onChatMessage(Text message, @Nullable SignedMessage signedMessage, @Nullable GameProfile sender, MessageType.Parameters params, Instant receptionTimestamp) {
+    public static void onChatMessage(Text text, boolean b) { //TODO: Check if something
         MinecraftClient client = MinecraftClient.getInstance();
-        String messageContent = message.getString().toLowerCase();
+        String messageContent = text.getString().toLowerCase();
 
-        LGMSkyblockMod.LOGGER.info("Incoming Chat Message: " + messageContent);
+        if (messageContent.contains("❤") && messageContent.contains("❈") && messageContent.contains("✎")) return;
+        //LGMSkyblockMod.LOGGER.info("Incoming Chat Message: " + messageContent);
 
         for (ChatTrigger trigger : triggers)
         {
@@ -63,5 +64,4 @@ public class TriggerManager {
             }
         }
     }
-
 }
