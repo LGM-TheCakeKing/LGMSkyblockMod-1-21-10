@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(HandledScreen.class)
 public class HandelScreenDrawMixin {
 
-    private static int HighlightColor = 0x66FFFF00;
+    private final static int highlightColor = 0x66FFFF00;
 
     @Inject(method = "drawSlot", at = @At("TAIL"))
     private void highlightItemInInventories(DrawContext context, Slot slot, CallbackInfo ci) {
@@ -41,14 +41,14 @@ public class HandelScreenDrawMixin {
 
         if (InventoryHighlighter.colorTerminal) {
             if (InventoryHighlighter.COLOR_GROUPS.get(InventoryHighlighter.lookForColor).contains(stack.getItem())) {
-                context.fill(x,y, x+16,y+16,HighlightColor);
+                context.fill(x,y, x+16,y+16,highlightColor);
                 return;
             }
         }
 
         if (InventoryHighlighter.nameTerminal) {
-            if (stack.getCustomName().getString().toLowerCase().startsWith(InventoryHighlighter.lookForLetter)) {
-                context.fill(x,y, x+16,y+16,HighlightColor);
+            if (stack.getItemName().getString().toLowerCase().startsWith(InventoryHighlighter.lookForLetter)) {
+                context.fill(x,y, x+16,y+16,highlightColor);
                 return;
             }
         }
@@ -62,10 +62,10 @@ public class HandelScreenDrawMixin {
             }
             if (stack.isOf(Items.RED_STAINED_GLASS_PANE)) {
                 if (stack.getCount() == InventoryHighlighter.nextIndexOfOrder) {
-                    context.fill(x,y, x+16,y+16,HighlightColor);
+                    context.fill(x,y, x+16,y+16,highlightColor);
                 }
                 if (stack.getCount() == InventoryHighlighter.nextIndexOfOrder+1) {
-                    context.fill(x,y, x+16,y+16,HighlightColor);
+                    context.fill(x,y, x+16,y+16,highlightColor);
                     return;
                 }
             }
