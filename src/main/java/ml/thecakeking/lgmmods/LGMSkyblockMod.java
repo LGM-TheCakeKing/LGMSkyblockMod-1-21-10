@@ -1,10 +1,8 @@
 package ml.thecakeking.lgmmods;
 
-import ml.thecakeking.lgmmods.Model.ChatTrigger;
 import ml.thecakeking.lgmmods.chattrigger.TriggerConfigHandler;
 import ml.thecakeking.lgmmods.chattrigger.TriggerConfigScreen;
 import ml.thecakeking.lgmmods.chattrigger.TriggerManager;
-import ml.thecakeking.lgmmods.dungeonhelper.BlazeSolver;
 import ml.thecakeking.lgmmods.dungeonhelper.DungeonUtils;
 import ml.thecakeking.lgmmods.dungeonhelper.MapHudOverlay;
 import net.fabricmc.api.ModInitializer;
@@ -14,11 +12,8 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallba
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.message.v1.ClientReceiveMessageEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.fabricmc.fabric.api.client.rendering.v1.world.WorldRenderEvents;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.util.math.MatrixStack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,6 +34,7 @@ public class LGMSkyblockMod implements ModInitializer {
         TriggerConfigHandler.load();
         LOGGER.info(TriggerManager.triggers.size() + " triggers loaded");
         register();
+
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.world == null || client.player == null) return;
 
@@ -54,19 +50,25 @@ public class LGMSkyblockMod implements ModInitializer {
             if (client.getNetworkHandler() == null) return;
             if (modtestOn) return;
             if (client.world.getTime() % 20 == 0) {
-                Collection<PlayerListEntry> tabList = client.getNetworkHandler().getPlayerList();
+                Collection<PlayerListEntry> tabList = client.getNetworkHandler().getPlayerList(); //Checking tab for stuff
 
+                boolean dungeonFound = false;
                 for (PlayerListEntry playerListEntry : tabList) {
                     if (playerListEntry.getDisplayName() == null) continue;
                     if (playerListEntry.getDisplayName().getString().contains("Dungeon Stats")) {
-                        DungeonUtils.currentlyInDungeon = true;
-                        BlazeSolver.reset();
+                        dungeonFound = true;
+                        DungeonUtils.initializeDungeonSession();
                         break;
                     }
+                }
+
+                if (!dungeonFound) {
+                    DungeonUtils.currentlyInDungeon = false;
                 }
             }
 
         });
+
 
         HudRenderCallback.EVENT.register(new MapHudOverlay());
         ClientReceiveMessageEvents.GAME.register(TriggerManager::onChatMessage);
