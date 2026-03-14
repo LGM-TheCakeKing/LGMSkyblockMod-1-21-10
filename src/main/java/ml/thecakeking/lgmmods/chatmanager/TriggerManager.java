@@ -1,15 +1,10 @@
-package ml.thecakeking.lgmmods.chattrigger;
+package ml.thecakeking.lgmmods.chatmanager;
 
-import com.mojang.authlib.GameProfile;
 import ml.thecakeking.lgmmods.LGMSkyblockMod;
 import ml.thecakeking.lgmmods.Model.ChatTrigger;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.network.message.MessageType;
-import net.minecraft.network.message.SignedMessage;
 import net.minecraft.text.Text;
-import org.jetbrains.annotations.Nullable;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 

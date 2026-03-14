@@ -1,5 +1,7 @@
 package ml.thecakeking.lgmmods.dungeonhelper;
 
+import ml.thecakeking.lgmmods.Model.WorldAreasNames;
+import ml.thecakeking.lgmmods.WorldTransferrerHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
@@ -47,7 +49,7 @@ public class InventoryHighlighter
     public static void onScreenOpened(String title)
     {
         //first check if terminal helper is on, then check if we are in a f7?
-        if(DungeonUtils.currentlyInDungeon)
+        if(WorldTransferrerHandler.GetCurrentWorld().equals(WorldAreasNames.Dungeon))
         {
             colorTerminal=false; orderTerminal=false; nameTerminal=false; onOffTerminal=false; panesTerminal=false; nextIndexOfOrder=1;
 

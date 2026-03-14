@@ -1,4 +1,4 @@
-package ml.thecakeking.lgmmods.chattrigger;
+package ml.thecakeking.lgmmods.chatmanager;
 
 
 import ml.thecakeking.lgmmods.LGMSkyblockMod;
@@ -10,7 +10,6 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.text.Text;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TriggerConfigScreen extends Screen {

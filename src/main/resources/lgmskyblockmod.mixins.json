@@ -3,6 +3,7 @@
   "package": "ml.thecakeking.lgmmods.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+
   ],
   "injectors": {
     "defaultRequire": 1
@@ -14,6 +15,7 @@
     "ClientPlayerInteractionManagerMixin",
     "HandelScreenDrawMixin",
     "HandledScreenMixin",
-    "ParticleManagerMixin"
+    "ParticleManagerMixin",
+    "BossBarMixin"
   ]
 }

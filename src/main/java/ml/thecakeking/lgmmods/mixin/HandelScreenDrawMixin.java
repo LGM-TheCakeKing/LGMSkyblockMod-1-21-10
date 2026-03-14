@@ -1,5 +1,7 @@
 package ml.thecakeking.lgmmods.mixin;
 
+import ml.thecakeking.lgmmods.Model.WorldAreasNames;
+import ml.thecakeking.lgmmods.WorldTransferrerHandler;
 import ml.thecakeking.lgmmods.dungeonhelper.DungeonUtils;
 import ml.thecakeking.lgmmods.dungeonhelper.InventoryHighlighter;
 import net.minecraft.client.MinecraftClient;
@@ -19,13 +21,18 @@ public class HandelScreenDrawMixin {
 
     private final static int highlightColor = 0x66FFFF00;
 
+    @Inject(method = "drawSlot", at = @At("HEAD"),  cancellable = true)
+    private void highlightItemInInventoriesHead(DrawContext context, Slot slot, CallbackInfo ci) {
+        //We can cancel the drawing so we dont can see those thing we dont need to click
+    }
+
     @Inject(method = "drawSlot", at = @At("TAIL"))
     private void highlightItemInInventories(DrawContext context, Slot slot, CallbackInfo ci) {
 
         TextRenderer renderer = MinecraftClient.getInstance().textRenderer;
         //context.drawText(renderer, String.valueOf(slot.id), slot.x, slot.y, 0x6600FF00, false); //For debugging
 
-        if (!DungeonUtils.currentlyInDungeon) return;
+        if (!WorldTransferrerHandler.GetCurrentWorld().equals(WorldAreasNames.Dungeon)) return;
         //check if terminal helper is on
         //if (!LGMSkyblockMod.TerminalHelp) return;
         //if in floor 7

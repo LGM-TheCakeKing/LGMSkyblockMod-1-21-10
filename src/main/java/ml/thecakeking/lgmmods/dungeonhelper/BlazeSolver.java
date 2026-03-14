@@ -26,9 +26,8 @@ public class BlazeSolver
     private static final List<Particle> targetParticles = new ArrayList<>();
     private static final List<Particle> nextTargetParticles = new ArrayList<>();
 
-    public static void Update(ClientWorld world) {
+    public static void Update(MinecraftClient client) {
         List<ArmorStandEntity> tags = new ArrayList<>();
-        MinecraftClient client = MinecraftClient.getInstance();
 
         for (Entity e : client.world.getEntities()) {
             if (e instanceof ArmorStandEntity armorstand) {

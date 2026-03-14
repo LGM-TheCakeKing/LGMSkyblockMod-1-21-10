@@ -1,4 +1,4 @@
-package ml.thecakeking.lgmmods.chattrigger;
+package ml.thecakeking.lgmmods.chatmanager;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,9 +8,7 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class TriggerConfigHandler {
     private static final Path CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve("chattriggers.json");
